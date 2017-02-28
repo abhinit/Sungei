@@ -1,5 +1,6 @@
 var mongoHandler = require("./db.client.js");
 var collectionName = "products";
+var url = "mongodb://localhost:27017/traider";
 
 
 exports.getById = function(id, callback) {
@@ -8,7 +9,7 @@ exports.getById = function(id, callback) {
     }
     var mongoclient = mongoHandler.getDbClient();
     // Open the connection to the server
-    mongoclient.open(function(err, mongoclient) {
+    mongoclient.connect(url, function(err, mongoclient) {
         var dbName = mongoHandler.dbName();
         var db = mongoclient.db(dbName);
         var mongoId;
@@ -38,7 +39,7 @@ exports.getAll = function(callback) {
         throw "Call to db method must include callback function"
     }
     var mongoclient = mongoHandler.getDbClient();
-    mongoclient.open(function(err, mongoclient) {
+    mongoclient.connect(url, function(err, mongoclient) {
 
         if (err) {
             mongoclient.close();
@@ -59,6 +60,7 @@ exports.getAll = function(callback) {
                 result.toArray(function(err, resultArray) {
                     // Close the connection
                     mongoclient.close();
+                    console.log(resultArray)
 
                     console.log("Got data: " + resultArray.length + " records.");
                     return callback(resultArray);
@@ -72,7 +74,7 @@ exports.getAll = function(callback) {
 
 exports.insert = function(data, callback) {
     var mongoclient = mongoHandler.getDbClient();
-    mongoclient.open(function(err, mongoclient) {
+    mongoclient.connect(url, function(err, mongoclient) {
 
         if (err) {
             mongoclient.close();

@@ -21,7 +21,8 @@ createServer = function createServer() {
     server.use(expressSession({
         secret: 'mdfkldfgkl&*(sas/d,asldsjf()*)(mlksdmfNfjSDsdfYUHNn',
         store: new MongoStore({
-            db: 'traiderioSessions'
+            db: 'traiderioSessions',
+            url: "mongodb://localhost:27017/traider"
         })
     }));
 

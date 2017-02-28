@@ -8,10 +8,14 @@ module.exports = function attachHandlers(router) { //, passport) {
 };
 
 var list = function(req, res) {
-
+    var totalPrice = 0.0;
     var sess = req.session;
+    sess.products.forEach(function (product){
+        totalPrice = totalPrice + product.price
+    });
+    sess['totalPrice'] = totalPrice
     if (sess.products) {
-        return res.json(sess.products);
+        return res.json(sess);
     } else {
         return res.json({});
     }

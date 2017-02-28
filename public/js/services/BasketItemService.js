@@ -15,7 +15,9 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
                 method: 'get',
                 url: '/api/basketItems/'
             }).success(function(data) {
-                caller.itemCount = data.length;
+                console.log("in service")
+                console.log(data)
+                caller.itemCount = data.products.length;
                 caller.broadcastItemCount();
                 callback(data);
             }).error(function() {

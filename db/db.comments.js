@@ -1,5 +1,11 @@
+/**
+ * Created by emily on 3/3/2017.
+ */
+
+//copied and pasted from db.products.js, changed collectionName
+
 var mongoHandler = require("./db.client.js");
-var collectionName = "products";
+var collectionName = "comments";
 var url = "mongodb://localhost:27017/traider";
 
 
@@ -72,7 +78,7 @@ exports.getAll = function(callback) {
 };
 
 
-exports.insert = function(collectionName, data, callback) {
+exports.insert = function(data, callback) {
     var mongoclient = mongoHandler.getDbClient();
     mongoclient.connect(url, function(err, mongoclient) {
 
@@ -88,44 +94,13 @@ exports.insert = function(collectionName, data, callback) {
 
         db.collection(collectionName).insert(data, function(err, result) {
             if (err) {
+
                 mongoclient.close();
                 throw err.Message;
                 return;
-            } else if (callback !== null && typeof(callback) === "function") {
+            } else if (callback === null && typeof(callback) !== "function") {
                 mongoclient.close();
                 return callback(result);
-            } else {
-                mongoclient.close();
-            }
-        });
-    });
-};
-
-exports.update = function(collectionName, id, data, callback) {
-    var mongoclient = mongoHandler.getDbClient();
-    mongoclient.connect(url, function(err, mongoclient) {
-
-        if (err) {
-            mongoclient.close();
-            throw err.Message;
-            return;
-        }
-
-        var dbName = mongoHandler.dbName();
-        var db = mongoclient.db(dbName);
-        console.log(dbName + "." + collectionName);
-        console.log(id,data)
-
-        db.collection(collectionName).update({_id: id},{$set: data}, function(err, result) {
-            if (err) {
-                mongoclient.close();
-                throw err.Message;
-                return;
-            } else if (callback !== null && typeof(callback) === "function") {
-                mongoclient.close();
-                return callback(result);
-            } else {
-                mongoclient.close();
             }
         });
     });

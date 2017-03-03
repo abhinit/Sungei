@@ -78,6 +78,7 @@ module.exports = function() {
         categories: [Categories],
         catalogs: [Catalogs],
         variants: [Variants],
+        comments: [Comments],
         modified: {
             type: Date,
             default: Date.now
@@ -93,7 +94,6 @@ module.exports = function() {
 
     });
 
-    //no clue if this is right...
     var Comment = new Schema({
         title: {
             type: String,
@@ -131,6 +131,7 @@ module.exports = function() {
 
 
     return {
-        Product: mongoose.model('Product', Product)
+        Product: mongoose.model('Product', Product),
+        Comment: mongoose.model('Comment', Comment)
     };
 }

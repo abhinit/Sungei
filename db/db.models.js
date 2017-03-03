@@ -26,6 +26,11 @@ module.exports = function() {
             type: Number,
             required: true,
             min: 0
+        },
+        discount: {
+            type: Number,
+            max: 100,
+            min: 0
         }
     });
 
@@ -76,8 +81,34 @@ module.exports = function() {
         modified: {
             type: Date,
             default: Date.now
+        },
+        rating: {
+            type: Number,
+            default: 0
+        },
+        seller: {
+            type: String,
+            default:"Seller"
+        }
+
+    });
+
+    //no clue if this is right...
+    var Comment = new Schema({
+        title: {
+            type: String,
+            default: "comment title"
+        },
+        description: {
+            type: String,
+            default: "comment description"
+        },
+        rating: {
+            type: Number,
+            default: 0
         }
     });
+
 
     // validation
     Product.path('title').validate(function(v) {

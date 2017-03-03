@@ -1,15 +1,74 @@
 <form>
+    <div id="tags">
+        <ul class="breadcrumb__list" itemscope="" itemtype="//schema.org/BreadcrumbList">
+            <li class="breadcrumb__item" itemscope="" itemprop="itemListElement" itemtype="//schema.org/ListItem", data-ng-repeat="i in product.tags">
+                <span class="breadcrumb__item-text">
+                    <a title="{{i}}" href="/tags/{{i}}" class="breadcrumb__item-anchor" itemprop="item">
+                        <span itemprop="name">{{i}}</span>
+                    </a>
+                </span>
+            </li>
+        </ul>
+        <!-- basically copied lazada... not sure if right -->
+    </div>
     <div class="row">
-        <div class="col-md-9">
-            <img src="/img/horse524.jpg" alt="A horse" style="width:100%;" />
+        <div class="col-md-6">
+              <img src="/img/horse524.jpg" alt="A horse" style="width:100%;" />
         </div>
-        <div class="col-md-3">
-            <h1>{{product.name}}</h1>
-            <select>
-                <option value="">Qty</option>
-                <option data-ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
-            </select>
-            <input type="submit" value="Add to basket" ng-click="addToBasket(product)" />
+        <div class="col-md-6">
+            <h2 id="product_name">{{product.name}}</h2>
+            <!-- <div id="product_rating"> rating: {{product.product_rating}}</div> -->
+            <div class="rating-box">
+                <div style="width:{{product.product_rating}}%" class="rating", title="rating: {{product.product_rating}}%">
+                </div>
+            </div>
+            <!-- found via http://www.jwebmedia.com/blog/technique-to-display-product-ratings-using-css/ -->
+            <div> seller: {{product.seller}}</div>
+            <br>
+          <!-- how do I make a space without using br? -->
+            <p id="product_description">
+                {{product.description}}
+            </p>
+            <div class = "row">
+                <div class="col-md-4">
+                    <h1> ${{product.offers.price}}</h1>
+                    <div> discount: {{product.offers.discount}} %</div>
+                </div>
+                <div class="col-md-6">
+                    <br>
+                    <br>
+                    <select>
+                        <option value="">Qty</option>
+                        <option data-ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+                    </select>
+                    <input type="submit" value="Add to basket" ng-click="addToBasket(product)" />
+                </div>
+            </div>
         </div>
     </div>
-</form> 
+    <div class="row">
+        <h2> Similar Products </h2>
+        <!--
+        <div class="col-sm-3" data-ng-repeat="i in products.similar_products">
+            <form>
+                <a href="/product/{{i._id}}">
+                    <img src="/img/horse524.jpg" alt="A horse" style="width:100%">
+                </a>
+                <p>{{i.name}} : {{i._id}}</p>
+            </form>
+        </div>
+        not sure how to link other products-->
+    </div>
+
+    <div class="row">
+        <h2> Comments </h2>
+        <div data-ng-repeat="i in product.comments">
+            <h3> {{i.title}} </h3>
+            <div class="rating-box">
+                <div style="width:{{i.rating}}%" class="rating", title="rating: {{i.rating}}%"></div>
+            </div>
+            <p> {{i.description}}</p>
+        </div>
+    </div>
+</form>
+

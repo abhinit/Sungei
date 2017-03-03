@@ -2,3 +2,61 @@
 #basket-table { width: 100%; }
 #basket-table tr:nth-child(2n) td { background-color: #efefef; }
 #basket-table th, #basket-table td { padding: 5px; }
+/*#tags ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#tags li{
+    display: inline-block;
+}
+*/
+.rating-box {
+    background: url("http://stevewamsley.com/wp-content/uploads/2012/09/bkg_rating.png") repeat-x;
+    font-size: 0;
+    height: 13px;
+    line-height: 0;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 70px;
+}
+
+.rating-box .rating {
+    background: url("http://stevewamsley.com/wp-content/uploads/2012/09/bkg_rating.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 13px;
+}
+
+
+.breadcrumb_theme_elegant .breadcrumb__list {
+    height: 48px;
+    display: table;
+}
+.breadcrumb__list {
+    height: 36px;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+    vertical-align: middle;
+    list-style-type: none;
+}
+.breadcrumb_theme_elegant .breadcrumb__item {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 8px 0 0;
+}
+.breadcrumb__item {
+    position: relative;
+    display: inline-block;
+    padding: 0 22px 0 10px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+.breadcrumb__item:before {
+    display: inline-block;
+    width: 0;
+    height: 36px;
+    margin-left: -1px;
+    vertical-align: middle;
+}

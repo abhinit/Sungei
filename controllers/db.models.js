@@ -1,8 +1,5 @@
 var mongoose = require('mongoose');
 
-module.exports = function() {
-
-
     var Schema = mongoose.Schema;
 
     // Schemas
@@ -52,46 +49,12 @@ module.exports = function() {
         sizes: [Sizes]
     });
 
-    var Categories = new Schema({
+    var Tag = new Schema({
         name: String
     });
 
     var Catalogs = new Schema({
         name: String
-    });
-
-    // Product Model
-    var Product = new Schema({
-        title: {
-            type: String,
-            required: true
-        },
-        description: {
-            type: String,
-            required: true
-        },
-        style: {
-            type: String,
-            unique: true
-        },
-        images: [Images],
-        categories: [Categories],
-        catalogs: [Catalogs],
-        variants: [Variants],
-        comments: [Comments],
-        modified: {
-            type: Date,
-            default: Date.now
-        },
-        rating: {
-            type: Number,
-            default: 0
-        },
-        seller: {
-            type: String,
-            default:"Seller"
-        }
-
     });
 
     var Comment = new Schema({
@@ -109,29 +72,68 @@ module.exports = function() {
         }
     });
 
+    // Product Model
+    var ProductSchema = new Schema({
+        title: {
+            type: String,
+            required: true
+        },
+        description: {
+            type: String,
+            required: true
+        },
+        style: {
+            type: String,
+            unique: true
+        },
+        images: [Images],
+        tags: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Tag'
+        }],
+        catalogs: [Catalogs],
+        variants: [Variants],
+        comments: [Comment],
+        modified: {
+            type: Date,
+            default: Date.now
+        },
+        rating: {
+            type: Number,
+            default: 0
+        },
+        seller: {
+            type: String,
+            default:"Seller"
+        }
+
+    });
+
 
     // validation
-    Product.path('title').validate(function(v) {
+    ProductSchema.path('title').validate(function(v) {
         console.log("validate title");
         console.log(v);
         return v.length > 10 && v.length < 70;
     });
 
-    Product.path('style').validate(function(v) {
+    ProductSchema.path('style').validate(function(v) {
         console.log("validate style");
         console.log(v);
         return v.length < 40;
     }, 'Product style attribute is should be less than 40 characters');
 
-    Product.path('description').validate(function(v) {
+    ProductSchema.path('description').validate(function(v) {
         console.log("validate description");
         console.log(v);
         return v.length > 10;
     }, 'Product description should be more than 10 characters');
 
 
-    return {
-        Product: mongoose.model('Product', Product),
-        Comment: mongoose.model('Comment', Comment)
-    };
-}
+var Product = mongoose.model('Product', ProductSchema);
+var Tag = mongoose.model('Tag', Tag);
+
+module.exports = {
+    Tag : Tag,
+    Product: Product
+};

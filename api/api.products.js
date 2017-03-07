@@ -1,4 +1,8 @@
-var db = require("../db/db.products.js");
+//var db = require("./db.products.js");
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/traider');
+var Product = require("C:/Users/emily/Documents/MLDS/ecommerce/traider.io/models/products.js");
+var Tag = require("C:/Users/emily/Documents/MLDS/ecommerce/traider.io/models/products.js");
 
 // define the routes for /api/users
 module.exports = function attachHandlers(router) { //, passport) {
@@ -16,6 +20,51 @@ function list(req, res) {
 }
 
 function seed(req, res) {
+
+    /*
+    var mongoHandler = require("C:/Users/emily/Documents/MLDS/ecommerce/traider.io/controllers/db.client.js");
+    var collectionName = "products";
+    var url = "mongodb://localhost:27017/traider";
+
+    var mongoclient = mongoHandler.getDbClient();
+// Open the connection to the server
+    mongoclient.connect(url)
+
+*/
+    var product1 = new Product({
+        name: "Horse",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.",
+        minPrice: 59.99,
+        offers: {
+            price: 59.99,
+            discount:0,
+            stock: 10
+        },
+        product_rating: 80,
+        seller: "sketchy farmer",
+        tags : [],
+        comments : [
+            {title:"first review", rating:60, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."},
+            {title:"second review", rating:50, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."},
+            {title:"third review", rating:90, description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."}
+        ],
+        related_products : []
+    });
+
+    var tags = [];
+    tags[0] = new Tag({ name : "animal" });
+    tags[1] = new Tag({ name : "farm" });
+    tags[2] = new Tag({ name : "sketchy"});
+
+    product1.assignTags(product1._id, tags, function (err, result) {
+        console.log(result);
+        res.json({
+            "status": "ok"
+        })
+    });
+
+    mongoclient.close;
+    /*
     var comment = {
         "title":"first review",
         "rating":40,
@@ -38,25 +87,29 @@ function seed(req, res) {
         "related_products" : []
     };
 
-    db.insert('products',product,function(productObj){
-        db.insert('comments',comment,function(commentObj){
+    controllers.insert('products',product,function(productObj){
+        controllers.insert('comments',comment,function(commentObj){
             console.log(commentObj.ops[0],productObj.ops[0])
-            db.update('products',productObj.ops[0]._id,{"comments":[commentObj.ops[0]._id]}, function(updatedProductObj){
+            controllers.update('products',productObj.ops[0]._id,{"comments":[commentObj.ops[0]._id]}, function(updatedProductObj){
                 res.json(updatedProductObj)
             })
         });
     });
-    // db.insert('comments',{
+    */
+
+
+
+    // controllers.insert('comments',{
     //     "title":"second review",
     //     "rating":20,
     //     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."
     // });
-    // db.insert('comments',{
+    // controllers.insert('comments',{
     //     "title":"third review",
     //     "rating":90,
     //     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."
     // });
-    /*db.insert({
+    /*controllers.insert({
         "name": "Cow",
         "description": "A lovely cow",
         "minPrice": 59.99,
@@ -74,7 +127,7 @@ function seed(req, res) {
         //    {"title":"third review", "rating":90, "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."}
         //]
     });
-    db.insert({
+    controllers.insert({
         "name": "cat",
         "description": "A lovely cat",
         "minPrice": 19.99,
@@ -92,7 +145,7 @@ function seed(req, res) {
             {"title":"third review", "rating":20, "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."}
         ]
     });
-    db.insert({
+    controllers.insert({
         "name": "dog",
         "description": "A lovely dog",
         "minPrice": 19.99,
@@ -110,7 +163,7 @@ function seed(req, res) {
             {"title":"third review", "rating":90, "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."}
         ]
     });
-    db.insert({
+    controllers.insert({
         "name": "mouse",
         "description": "A lovely mouse",
         "minPrice": 19.99,

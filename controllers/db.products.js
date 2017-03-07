@@ -5,7 +5,7 @@ var url = "mongodb://localhost:27017/traider";
 
 exports.getById = function(id, callback) {
     if (callback === null || typeof(callback) !== "function") {
-        throw "Call to db method must include callback function"
+        throw "Call to controllers method must include callback function"
     }
     var mongoclient = mongoHandler.getDbClient();
     // Open the connection to the server
@@ -36,7 +36,7 @@ exports.getById = function(id, callback) {
 
 exports.getAll = function(callback) {
     if (callback === null || typeof(callback) !== "function") {
-        throw "Call to db method must include callback function"
+        throw "Call to controllers method must include callback function"
     }
     var mongoclient = mongoHandler.getDbClient();
     mongoclient.connect(url, function(err, mongoclient) {

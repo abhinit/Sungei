@@ -12,12 +12,13 @@
         "type": "mit"
     },  
     "dependencies": {
-        "express": "3.x" ,
+        "express": "*" ,
         "mongodb": "*",
         "connect-mongo" : "*",
         "express-session" : "*" ,
         "cookie-parser" : "*" ,
-        "request-json" : "*"
+        "request-json" : "*" ,
+	"mongoose" : "*"
       },
     "repository": {
         "type": "git",

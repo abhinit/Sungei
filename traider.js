@@ -1,42 +1,31 @@
-var express = require('express'),
-    cookieParser = require('cookie-parser'),
-    expressSession = require('express-session');
+var fs = require('fs');
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+var mongoose = require('mongoose');
 
-var routes = require('./routes/routes.js');
-var MongoStore = require('connect-mongo')({
-    session: expressSession
-});
+const url = "mongodb://localhost:27017/traider";
+const join = require('path').join;
+const models = join(__dirname, 'models');
 
+mongoose.connect(url).connection
+        .on('error', console.log)
+        .on('open', listen);
+fs.readdirSync(models)
+        .filter(file => ~file.search(/^[^\.].*\.js$/))
+        .forEach(file => require(join(models, file)));
 
-createServer = function createServer() {
+var server = express();
 
-    var server = express();
-    // specify middleware 
-    //server.use(express.bodyParser());
-    server.use(express.static(__dirname + '/public'));
-    server.use('/product/*', express.static(__dirname + '/public'));
-    server.use('/basket/', express.static(__dirname + '/public'));
+server.use(express.static(__dirname + '/public'));
+server.use('/product/*', express.static(__dirname + '/public'));
+server.use('/basket/', express.static(__dirname + '/public'));
+server.use(cookieParser());
+server.use('/api/products', require('./routes/products.js'))
 
-    server.use(cookieParser());
-    server.use(expressSession({
-        secret: 'mdfkldfgkl&*(sas/d,asldsjf()*)(mlksdmfNfjSDsdfYUHNn',
-        store: new MongoStore({
-            db: 'traiderioSessions',
-            url: "mongodb://localhost:27017/traider"
-        })
-    }));
-
-
-    // attach router handlers
-    routes.attachHandlers(server); //, passport);
-
-    return server;
-
-};
-
-
-var server = createServer();
-var port = Number(process.env.PORT || 5000);
-server.listen(port, function() {
-    console.log("Listening on " + port);
-});
+function listen(){
+	var port = Number(process.env.PORT || 5000);
+	server.listen(port, function() {
+	    console.log("Listening on " + port);
+	});
+}

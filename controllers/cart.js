@@ -1,13 +1,7 @@
 var expressSession = require("express-session");
 var requestJson = require("request-json");
 
-module.exports = function attachHandlers(router) { //, passport) {
-    // get requests
-    router.get('/api/basketItems/Add/:productId', addItem);
-    router.get('/api/basketItems/', list);
-};
-
-var list = function(req, res) {
+exports.view = function(req, res) {
     var totalPrice = 0.0;
     var sess = req.session;
     sess.products.forEach(function (product){
@@ -19,8 +13,9 @@ var list = function(req, res) {
     } else {
         return res.json({});
     }
-};
+}
 
+/*
 var addItem = function(req, res) {
 
     var productId = req.params.productId;
@@ -50,5 +45,4 @@ var addItem = function(req, res) {
 
         //return console.log(body.rows[0].title);
     });
-
-};
+*/

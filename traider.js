@@ -21,7 +21,9 @@ server.use(express.static(__dirname + '/public'));
 server.use('/product/*', express.static(__dirname + '/public'));
 server.use('/basket/', express.static(__dirname + '/public'));
 server.use(cookieParser());
+
 server.use('/api/products', require('./routes/products.js'))
+server.use('/api/cart', require('./routes/cart.js'))
 
 function listen(){
 	var port = Number(process.env.PORT || 5000);

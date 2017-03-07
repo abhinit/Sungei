@@ -1,9 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var collectionName = "products";
-var url = "mongodb://localhost:27017/traider";
-
-mongoose.connect(url);
 
 // Schemas
 var Sizes = new Schema({

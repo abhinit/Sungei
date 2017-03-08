@@ -9,11 +9,11 @@ const join = require('path').join;
 const models = join(__dirname, 'models');
 
 mongoose.connect(url).connection
-        .on('error', console.log)
-        .on('open', listen);
+    .on('error', console.log)
+    .on('open', listen);
 fs.readdirSync(models)
-        .filter(file => ~file.search(/^[^\.].*\.js$/))
-        .forEach(file => require(join(models, file)));
+	.filter(file => ~file.search(/^[^\.].*\.js$/))
+    .forEach(file => require(join(models, file)));
 
 var server = express();
 

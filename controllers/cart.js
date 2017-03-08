@@ -1,5 +1,7 @@
 var expressSession = require("express-session");
 var requestJson = require("request-json");
+var mongoose = require('mongoose')
+var Product = mongoose.model('Product');
 
 exports.view = function(req, res) {
     var totalPrice = 0.0;

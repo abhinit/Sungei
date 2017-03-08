@@ -23,6 +23,15 @@ exports.seed = function(req, res) {
         related_products : []
     });
 
+    product1.save(function(err) {
+        if (err) console.log(err);
+        else {
+            console.log("product saved.");
+            // res.json({
+            //     "status":"saved"
+            // })
+        }
+    });
     // var tags = [];
     // tags[0] = new Tag({name: "animal"});
     // tags[1] = new Tag({name: "farm"});
@@ -40,13 +49,15 @@ exports.seed = function(req, res) {
     //     });
     // };
 
-    var tags = new Tag({name:"animal"})
-    tags.save(function(err){
+    var animal_tag = new Tag({name:"animal"})
+    animal_tag.save(function(err){
         if (err) console.log(err);
         else {
             console.log("tag saved")
         }
     });
+
+    product1.tags.push(animal_tag);
     product1.save(function(err) {
         if (err) console.log(err);
         else {
@@ -57,30 +68,33 @@ exports.seed = function(req, res) {
         }
     });
 
-    product1.update({_id: product1._id}, {$set: {tags: tags._id}}, function (err, result) {
-        if (err) console.log(err);
-        console.log(result);
-        res.json({
-            "status": "assigned tags"
-        })
-        console.log(product1.tags)
-    });
-
-    product1.save(function(err) {
-        if (err) console.log(err);
-        else {
-            console.log("product saved.");
-            // res.json({
-            //     "status":"saved"
-            // })
-        }
-    });
+    Product.findOne({title:"Horse"})
+        .populate('tags')
+        .exec(function(err, product){
+            if (err) console.log(err);
+            res.json({
+                "status": "tags saved"
+            })
+        });
 
 
-    // Product.findOne({_id: product1._id}, function(err, product1){
+    // product1.update({_id: product1._id}, {$set: {tags: tag_id}}, function (err, result) {
     //     if (err) console.log(err);
-    //     product1.tags = tags
+    //     console.log(result);
+    //     res.json({
+    //         "status": "assigned tags"
+    //     })
     //     console.log(product1.tags)
+    // });
+
+    // product1.save(function(err) {
+    //     if (err) console.log(err);
+    //     else {
+    //         console.log("product saved.");
+    //         // res.json({
+    //         //     "status":"saved"
+    //         // })
+    //     }
     // });
 
 };

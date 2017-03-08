@@ -78,10 +78,10 @@ var ProductSchema = new Schema({
         required: true
     },
     images: [Images],
-    tags: [{
+    tags: [{tag:{
         type: Schema.Types.ObjectId,
         ref: 'Tag'
-    }],
+    }}],
     catalogs: [Catalogs],
     variants: [Variants],
     comments: [Comment],

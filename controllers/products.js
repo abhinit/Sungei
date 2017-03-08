@@ -32,24 +32,8 @@ exports.seed = function(req, res) {
             // })
         }
     });
-    // var tags = [];
-    // tags[0] = new Tag({name: "animal"});
-    // tags[1] = new Tag({name: "farm"});
-    // tags[2] = new Tag({name: "sketchy"});
-    //
-    // for (var i = 0; i < 3; i++) {
-    //     tags[i].save(function (err) {
-    //         if (err) console.log(err);
-    //         else {
-    //             console.log("tags saved.");
-    //             // res.json({
-    //             //     "status":"saved"
-    //             // })
-    //         }
-    //     });
-    // };
 
-    var animal_tag = new Tag({name:"animal"})
+    var animal_tag = new Tag({name:"animal"});
     animal_tag.save(function(err){
         if (err) console.log(err);
         else {
@@ -57,7 +41,15 @@ exports.seed = function(req, res) {
         }
     });
 
-    product1.tags.push(animal_tag);
+    var farm_tag = new Tag({name:"farm"});
+    farm_tag.save(function(err){
+        if (err) console.log(err);
+        else {
+            console.log("tag saved")
+        }
+    });
+
+    product1.tags.push(animal_tag, farm_tag);
     product1.save(function(err) {
         if (err) console.log(err);
         else {
@@ -73,8 +65,9 @@ exports.seed = function(req, res) {
         .exec(function(err, product){
             if (err) console.log(err);
             res.json({
-                "status": "tags saved"
+                "status": "tags populated"
             })
+            console.log("tags populated")
         });
 
 

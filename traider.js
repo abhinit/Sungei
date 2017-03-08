@@ -22,6 +22,10 @@ server.use('/product/*', express.static(__dirname + '/public'));
 server.use('/basket/', express.static(__dirname + '/public'));
 server.use(cookieParser());
 
+server.use(expressSession({
+    secret: 'mdfkldfgkl&*(sas/d,asldsjf()*)(mlksdmfNfjSDsdfYUHNn'
+}));
+
 server.use('/api/products', require('./routes/products.js'))
 server.use('/api/cart', require('./routes/cart.js'))
 server.use('/api/tags', require('./routes/tags'))

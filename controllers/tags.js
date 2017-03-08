@@ -13,12 +13,12 @@ exports.list = function(req, res){
 };
 
 exports.viewProducts = function(req, res) {
-    Tag.findOne({name: req.params.name }, function(err, tag){
+    Tag.findOne({name: req.params.name}, function(err, tag){
         if (err) {
             console.log(err);
         } else {
-            console.log(tag)
-            Product.find({Tag: tag}, function(err, products) {
+            console.log(tag._id);
+            Product.find({Tag: tag._id}, function(err, products) {
                 if (err) {
                     console.log(err);
                 } else{

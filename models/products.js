@@ -67,6 +67,17 @@ var Comment = new Schema({
     }
 });
 
+var Recommendation = new Schema({
+    product: {
+       type: Schema.Types.ObjectId,
+       ref: 'product'
+    },
+    strength:{
+        type: Number,
+        default: 0
+    }
+});
+
 // Product Model
 var ProductSchema = new Schema({
     title: {
@@ -96,7 +107,8 @@ var ProductSchema = new Schema({
     seller: {
         type: String,
         default:"Seller"
-    }
+    },
+    recommendations: [Recommendation]
 
 });
 

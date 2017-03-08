@@ -126,7 +126,35 @@ exports.seed = function(req, res) {
             console.log("tags populated")
         });
 
-    res.json({"status":"done"})
+    res.json({"status":"done"});
+
+    product1.recommendations.push({product:product2, strength:40});
+    product1.save(function (err) {
+        if (err) console.log(err);
+        else {
+            console.log("product saved.");
+        }
+    });
+    product2.recommendations.push({product:product1, strength:60});
+    product2.save(function (err) {
+        if (err) console.log(err);
+        else {
+            console.log("product saved.");
+        }
+    });
+
+    Product.findOne({_id : product1._id})
+        .populate('recommendations')
+        .exec(function (err) {
+            if (err) console.log(err);
+            console.log("tags populated")
+        });
+    Product.findOne({_id : product2._id})
+        .populate('recommendations')
+        .exec(function (err) {
+            if (err) console.log(err);
+            console.log("tags populated")
+        });
 };
 
 exports.list = function(req, res) {

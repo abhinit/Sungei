@@ -1,5 +1,7 @@
 var expressSession = require("express-session");
 var requestJson = require("request-json");
+var mongoose = require('mongoose')
+var Product = mongoose.model('Product');
 
 exports.view = function(req, res) {
     var totalPrice = 0.0;
@@ -13,26 +15,23 @@ exports.view = function(req, res) {
     } else {
         return res.json({});
     }
-}
+};
 
-/*
-var addItem = function(req, res) {
 
+exports.addItem = function(req, res) {
     var productId = req.params.productId;
+    var client = requestJson.createClient('http://127.0.0.1:5000/');
 
-    var client = requestJson.newClient('http://127.0.0.1:5000/');
-
-    client.get('api/products/' + productId, function(err, result, data) {
+    client.get('api/products/' + productId, function (err, result, data) {
         if (err) {
-            return res.send(500);
+            return res.sendStatus(500);
         }
 
         var productInfo = {
             "productId": data._id,
-            "name": data.name,
+            "title": data.title,
             "price": data.offers.price
         };
-
 
         var sess = req.session;
         if (!sess.products) {
@@ -45,4 +44,4 @@ var addItem = function(req, res) {
 
         //return console.log(body.rows[0].title);
     });
-*/
+};

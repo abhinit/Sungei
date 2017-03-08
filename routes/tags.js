@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('../controllers/products');
+var controller = require('../controllers/tags');
 
-router.get('/seed', controller.seed);
 router.get('/list', controller.list);
-router.get('/:id', controller.view);
+router.get('/:name', controller.viewProducts);
 
 module.exports = router;

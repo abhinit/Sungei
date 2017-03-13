@@ -110,15 +110,15 @@ exports.seed = function(req, res) {
             console.log("product saved.");
         }
     });
-
-    product2.tags.push(animal_tag, farm_tag);
+    //add to the tags array
+    product2.tags.push(animal_tag);
     product2.save(function (err) {
         if (err) console.log(err);
         else {
             console.log("product saved.");
         }
     });
-
+    //hydrate
     Product.findOne({_id : product2._id})
         .populate('tags')
         .exec(function (err) {

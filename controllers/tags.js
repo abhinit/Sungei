@@ -17,12 +17,10 @@ exports.viewProducts = function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            var tagId = mongoose.Types.ObjectId(tag._id);
-            Product.find({tags: tagId}, function(err, products) {
+            Product.find({tags: tag._id}, function(err, products) {
                 if (err) {
                     console.log(err);
                 } else{
-                    console.log(tagId);
                     console.log(products);
                     return res.json({product: products})
                 }

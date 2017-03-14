@@ -12,5 +12,5 @@ angular.module('BasketCtrl', []).controller('BasketController', function($scope,
         $scope.basketItemCount = BasketItems.itemCount;
     });
 
-    //$scope.$on('basketUpdate', function(event, args) {alert('caught');});
+    $scope.$on('basketUpdate', function(event, args) {alert('caught');});
 });

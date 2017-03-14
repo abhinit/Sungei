@@ -13,7 +13,7 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
             caller = this;
             $http({
                 method: 'get',
-                url: '/api/basketItems/'
+                url: '/api/cart/'
             }).success(function(data) {
                 console.log("in service")
                 console.log(data)
@@ -25,12 +25,11 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
             });
         };
 
-        basketService.addOne = function(id, callback) {
-
+        basketService.addOne = function(id, qty, callback) {
             caller = this;
             $http({
                 method: 'get',
-                url: '/api/basketItems/Add/' + id
+                url: '/api/cart/Add/' + id + '/' + qty
             }).success(function(data) {
                 //setItemCount(10);
                 caller.itemCount = data.ItemCount;

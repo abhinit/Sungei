@@ -24,17 +24,19 @@ exports.view = function(req, res) {
 
 exports.addItem = function(req, res) {
     var productId = req.params.productId;
+    var qty = req.params.qty;
     var client = requestJson.createClient('http://127.0.0.1:5000/');
 
     client.get('api/products/' + productId, function (err, result, data) {
         if (err) {
             return res.sendStatus(500);
         }
-        console.log(data)
+        // console.log(data)
         var productInfo = {
             "productId": data._id,
             "title": data.title,
-            "price": data.price
+            "qty": qty,
+            "price": data.price * qty
         };
 
         var sess = req.session;
@@ -42,6 +44,7 @@ exports.addItem = function(req, res) {
             sess.products = new Array();
         }
         sess.products.push(productInfo);
+        console.log(sess.products)
         return res.send({
             ItemCount: sess.products.length
         });

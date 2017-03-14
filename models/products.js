@@ -1,30 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// Schemas
-var Sizes = new Schema({
-    size: {
-        type: String,
-        required: true
-    },
-    available: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 10
-    },
-    sku: {
-        type: String,
-        required: true,
-        validate: [/[a-zA-Z0-9]/, 'Product sku should only have letters and numbers']
-    },
-    price: {
-        type: Number,
-        required: true,
-        min: 0
-    }
-});
-
 var Images = new Schema({
     kind: {
         type: String,
@@ -37,11 +13,6 @@ var Images = new Schema({
     }
 });
 
-var Variants = new Schema({
-    color: String,
-    images: [Images],
-    sizes: [Sizes]
-});
 
 var Catalogs = new Schema({
     name: String
@@ -89,7 +60,6 @@ var ProductSchema = new Schema({
         ref: 'Tag'
     }],
     catalogs: [Catalogs],
-    variants: [Variants],
     comments: [Comment],
     modified: {
         type: Date,

@@ -6,6 +6,9 @@ exports.list = function(req, res){
     Tag.find({}, function(err, tags){
         if (err){
             console.log(err);
+            return res.json({
+                "Error": err
+            });
         }else {
             return res.json({tag: tags});
         };
@@ -13,18 +16,14 @@ exports.list = function(req, res){
 };
 
 exports.viewProducts = function(req, res) {
-    Tag.findOne({name: req.params.name}, function(err, tag){
+    Product.find({tags: mongoose.Types.ObjectId(req.params.id)}, function(err, products) {
         if (err) {
             console.log(err);
-        } else {
-            Product.find({tags: tag._id}, function(err, products) {
-                if (err) {
-                    console.log(err);
-                } else{
-                    console.log(products);
-                    return res.json({product: products})
-                }
+            return res.json({
+                "Error": err
             });
+        } else{
+            return res.json({product: products})
         }
     });
 };

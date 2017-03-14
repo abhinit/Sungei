@@ -23,32 +23,28 @@ exports.view = function(req, res) {
 
 
 exports.addItem = function(req, res) {
-    var productId = req.params.productId;
-    var qty = req.params.qty;
-    var client = requestJson.createClient('http://127.0.0.1:5000/');
+    console.log(req.body)
+    var productId = req.data.id;
+    var qty = req.data.qty;
+    var productTitle = req.data.title;
+    var productPrice = req.data.price;
+    var productInfo = {
+        "productId": productId,
+        "productTitle": productTitle,
+        "quantity": qty,
+        "price": productPrice * qty
+    };
 
-    client.get('api/products/' + productId, function (err, result, data) {
-        if (err) {
-            return res.sendStatus(500);
-        }
-        // console.log(data)
-        var productInfo = {
-            "productId": data._id,
-            "title": data.title,
-            "qty": qty,
-            "price": data.price * qty
-        };
-
-        var sess = req.session;
-        if (!sess.products) {
-            sess.products = new Array();
-        }
-        sess.products.push(productInfo);
-        console.log(sess.products)
-        return res.send({
-            ItemCount: sess.products.length
-        });
+    var sess = req.session;
+    if (!sess.products) {
+        sess.products = new Array();
+    }
+    sess.products.push(productInfo);
+    console.log(sess.products)
+    return res.send({
+        ItemCount: sess.products.length
+    });
 
         //return console.log(body.rows[0].title);
-    });
+
 };

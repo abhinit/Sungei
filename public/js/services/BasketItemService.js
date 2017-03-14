@@ -25,15 +25,22 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
             });
         };
 
-        basketService.addOne = function(id, qty, callback) {
+        basketService.addOne = function(id, qty, title, price, callback) {
             caller = this;
             $http({
-                method: 'get',
-                url: '/api/cart/Add/' + id + '/' + qty
+                method: 'post',
+                url: '/api/cart/add/',
+                data: {
+                    id : id,
+                    qty : qty,
+                    title : title,
+                    price : price
+                }
             }).success(function(data) {
                 //setItemCount(10);
                 caller.itemCount = data.ItemCount;
                 caller.broadcastItemCount();
+                console.log(data)
                 callback(null, data);
             }).error(function(err) {
                 callback(err);

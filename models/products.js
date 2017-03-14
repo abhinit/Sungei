@@ -36,7 +36,7 @@ var Comment = new Schema({
 var Recommendation = new Schema({
     product: {
        type: Schema.Types.ObjectId,
-       ref: 'product'
+       ref: 'Product'
     },
     strength:{
         type: Number,

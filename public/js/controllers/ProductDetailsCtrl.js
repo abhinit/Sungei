@@ -7,7 +7,7 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
     });
 
     $scope.addToBasket = function(product) {
-        BasketItems.addOne(product._id, $scope.qty, function(err, data) {
+        BasketItems.addOne(product._id, $scope.qty, product.title, product.price, function(err, data) {
             $scope.$emit('basketUpdate');
             if (err) {
                 alert(err);

@@ -5,5 +5,5 @@ var controller = require('../controllers/cart');
 router.get('/view', controller.view);
 router.get('/add/:productId', controller.addItem);
 
-module.exports = router
+module.exports = router;
 

@@ -22,11 +22,6 @@ var Sizes = new Schema({
         type: Number,
         required: true,
         min: 0
-    },
-    discount: {
-        type: Number,
-        max: 100,
-        min: 0
     }
 });
 
@@ -108,8 +103,17 @@ var ProductSchema = new Schema({
         type: String,
         default:"Seller"
     },
-    recommendations: [Recommendation]
-
+    recommendations: [Recommendation],
+    price:{
+        type: Number,
+        required: true,
+        min: 0
+    },
+    discount: {
+        type: Number,
+        max: 100,
+        min: 0
+    }
 });
 
 mongoose.model('Product', ProductSchema);

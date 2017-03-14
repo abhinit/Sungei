@@ -30,11 +30,11 @@ exports.addItem = function(req, res) {
         if (err) {
             return res.sendStatus(500);
         }
-
+        console.log(data)
         var productInfo = {
             "productId": data._id,
             "title": data.title,
-            "price": data.offers.price
+            "price": data.price
         };
 
         var sess = req.session;

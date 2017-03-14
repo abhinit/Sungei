@@ -8,7 +8,9 @@
     </thead>
     <tbody>
         <tr data-ng-repeat="i in products">
-            <td>{{i.title}}</td>
+            <td >
+                <a href="/product/{{i.id}}"> {{i.title}} </a>
+            </td>
             <td>{{i.qty}}</td>
             <td>${{i.price}}</td>
         </tr>

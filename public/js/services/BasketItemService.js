@@ -32,7 +32,7 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
                 url: '/api/cart/add/',
                 data: {
                     id : id,
-                    qty : qty,
+                    qty : parseInt(qty),
                     title : title,
                     price : price
                 }

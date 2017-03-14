@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var mongoose = require('mongoose');
 var morgan = require('morgan');
+var bodyParser = require('body-parser')
 const url = "mongodb://localhost:27017/traider";
 const join = require('path').join;
 const models = join(__dirname, 'models');
@@ -18,6 +19,7 @@ fs.readdirSync(models)
 
 var server = express();
 
+server.use(bodyParser.json())
 server.use(express.static(__dirname + '/public'));
 server.use('/product/*', express.static(__dirname + '/public'));
 server.use('/basket/', express.static(__dirname + '/public'));

@@ -23,16 +23,13 @@ exports.view = function(req, res) {
 
 
 exports.addItem = function(req, res) {
-    console.log(req.body)
-    var productId = req.data.id;
-    var qty = req.data.qty;
-    var productTitle = req.data.title;
-    var productPrice = req.data.price;
+    var data = req.body;
+
     var productInfo = {
-        "productId": productId,
-        "productTitle": productTitle,
-        "quantity": qty,
-        "price": productPrice * qty
+        "id": data.id,
+        "title": data.title,
+        "qty": data.qty,
+        "price": data.price * data.qty
     };
 
     var sess = req.session;
@@ -40,11 +37,8 @@ exports.addItem = function(req, res) {
         sess.products = new Array();
     }
     sess.products.push(productInfo);
-    console.log(sess.products)
+
     return res.send({
         ItemCount: sess.products.length
     });
-
-        //return console.log(body.rows[0].title);
-
 };

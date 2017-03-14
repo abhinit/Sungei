@@ -12,6 +12,7 @@
     "type": "mit"
   },
   "dependencies": {
+    "body-parser": "^1.17.1",
     "connect-mongo": "*",
     "cookie-parser": "*",
     "express": "*",

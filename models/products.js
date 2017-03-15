@@ -5,7 +5,7 @@ var Images = new Schema({
     kind: {
         type: String,
         enum: ['thumbnail', 'catalog', 'detail', 'zoom'],
-        required: true
+        default: 'detail'
     },
     url: {
         type: String,

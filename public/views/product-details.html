@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-              <img src="/img/horse524.jpg" alt="A horse" style="width:100%;" />
+              <img src="{{product.images[0].url}}" alt="product.title" style="width:100%;" />
         </div>
         <div class="col-md-6">
             <h2 id="product_name">{{product.title}}</h2>
@@ -51,7 +51,7 @@
 
         <div class="col-sm-3" data-ng-repeat="i in recommendations">
             <a href="/product/{{i._id}}">
-                <img src="/img/horse524.jpg" alt="A horse" style="width:100%">
+                <img src="{{i.images[0].url}}" alt="i.title" style="width:100%">
             </a>
             <p>{{i.title}} : {{i._id}}</p>
         </div>

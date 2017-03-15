@@ -1,7 +1,7 @@
 <h2>tag: {{tag.name}}</h2>
 <div class="col-sm-3" data-ng-repeat="i in products">
     <a href="/product/{{i._id}}">
-        <img src="/img/horse524.jpg" alt="A horse" style="width:100%">
+        <img src="{{i.images[0].url}}" alt="i.title" style="width:100%">
     </a>
     <p>{{i.title}} : {{i._id}}</p>
 </div>

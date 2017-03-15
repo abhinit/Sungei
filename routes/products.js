@@ -6,5 +6,6 @@ router.get('/seed', controller.seed);
 router.get('', controller.list);
 router.get('/:id', controller.view);
 router.get('/tags/:id', controller.getTagInfo);
+router.get('/recommendations/:id', controller.getRecommendations)
 
 module.exports = router;

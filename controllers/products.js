@@ -188,10 +188,35 @@ exports.getTagInfo = function(req, res){
                         "Error": err
                     });
                 } else {
-                    console.log(tags);
                     return res.json({tags : tags})
                 }
             })
         }
-    })
-}
+    });
+};
+
+exports.getRecommendations = function(req, res){
+    Product.findOne({_id: req.params.id}, function(err,data){
+        if(err){
+            console.log(err);
+            return res.json({
+                "Error" : err
+            })
+        } else {
+            var recList = [];
+            for (var i=0; i<data.recommendations.length; i++){
+                recList[i] = data.recommendations[i].product;
+            }
+            Product.find({_id:{$in : recList}}, function(err, recommendations) {
+                if (err) {
+                    console.log(err);
+                    return res.json({
+                        "Error": err
+                    });
+                } else {
+                    return res.json({recommendations : recommendations})
+                }
+            })
+        }
+    });
+};

@@ -38,6 +38,16 @@ angular.module('ProductService', []).factory('Products', ['$http',
                }).error(function() {
                    alert('error')
                })
+           },
+           getRecommendations: function(id, callback) {
+               $http({
+                   method: 'get',
+                   url: '/api/products/recommendations/' +id
+               }).success(function(data) {
+                   callback(data);
+               }).error(function() {
+                   alert('error')
+               })
            }
         };
     }

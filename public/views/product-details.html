@@ -49,12 +49,11 @@
     <div class="row">
         <h2> Related Products </h2>
 
-        <div class="col-sm-3" data-ng-repeat="i in product.recommendations">
-                <!--<a href="/product/{{i._id}}">-->
-                    <!--<img src="/img/horse524.jpg" alt="A horse" style="width:100%">-->
-                <!--</a>-->
-                <!--<p>{{i.name}} : {{i._id}}</p>-->
-            <!--</form>-->
+        <div class="col-sm-3" data-ng-repeat="i in recommendations">
+            <a href="/product/{{i._id}}">
+                <img src="/img/horse524.jpg" alt="A horse" style="width:100%">
+            </a>
+            <p>{{i.name}} : {{i._id}}</p>
         </div>
 
     </div>

@@ -22,5 +22,13 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
                 return;
             }
             $scope.tags = data.tags
+    });
+
+    Products.getRecommendations(id, function(data){
+        if (err) {
+            alert (err);
+            return;
+        }
+        $scope.recommendations = data
     })
 });

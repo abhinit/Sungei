@@ -23,6 +23,7 @@ server.use(bodyParser.json())
 server.use(express.static(__dirname + '/public'));
 server.use('/product/*', express.static(__dirname + '/public'));
 server.use('/basket/', express.static(__dirname + '/public'));
+server.use('/tags/*', express.static(__dirname + '/public'))
 server.use(morgan('dev'))
 server.use(cookieParser());
 

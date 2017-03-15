@@ -27,3 +27,16 @@ exports.viewProducts = function(req, res) {
         }
     });
 };
+
+exports.tagInfo = function(req, res) {
+    Tag.findOne({_id: mongoose.Types.ObjectId(req.params.id)}, function(err, data){
+        if (err){
+            console.log(err);
+            return res.json({
+                "Error": err
+            });
+        }else {
+            return res.json({tag: data});
+        };
+    })
+}

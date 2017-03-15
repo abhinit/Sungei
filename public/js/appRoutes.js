@@ -13,6 +13,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
             .when('/basket', {
                 templateUrl: '/views/basket.html',
                 controller: 'BasketController'
+            })
+            .when('/tags', {
+                templateUrl: '/views/tags-list.html',
+                controller: 'TagsListController'
+            })
+            .when('/tags/:id', {
+                templateUrl: '/views/tags-products.html',
+                controller: 'TagsController'
             });
 
         $locationProvider.html5Mode(true);

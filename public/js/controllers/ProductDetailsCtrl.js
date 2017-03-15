@@ -15,4 +15,6 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
             }
         });
     };
+
+
 });

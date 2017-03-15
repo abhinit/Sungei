@@ -1,4 +1,4 @@
-angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', function($scope, $routeParams, Products, BasketItems) {
+angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', function($scope, $routeParams, Products, BasketItems, Tags) {
     var id = $routeParams.id;
 
     Products.getOne(id, function(data) {
@@ -16,5 +16,11 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
         });
     };
 
-
+    Products.getTags(id, function(data){
+            if (err) {
+                alert (err);
+                return;
+            }
+            $scope.tags = data.tags
+    })
 });

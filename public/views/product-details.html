@@ -1,10 +1,10 @@
 <form>
     <div id="tags">
         <ul class="breadcrumb__list" itemscope="" itemtype="//schema.org/BreadcrumbList">
-            <li class="breadcrumb__item" itemscope="" itemprop="itemListElement" itemtype="//schema.org/ListItem", data-ng-repeat="i in product.tags">
+            <li class="breadcrumb__item" itemscope="" itemprop="itemListElement" itemtype="//schema.org/ListItem", data-ng-repeat="i in tags">
                 <span class="breadcrumb__item-text">
-                    <a title="{{i}}" href="/tags/{{i}}" class="breadcrumb__item-anchor" itemprop="item">
-                        <span itemprop="name">{{i}}</span>
+                    <a title="{{i.name}}" href="/tags/{{i._id}}" class="breadcrumb__item-anchor" itemprop="item">
+                        <span itemprop="name">{{i.name}}</span>
                     </a>
                 </span>
             </li>
@@ -50,10 +50,11 @@
         <h2> Related Products </h2>
 
         <div class="col-sm-3" data-ng-repeat="i in product.recommendations">
-            <a href="/product/{{i.product}}">
-                <img src="/img/horse524.jpg" alt="A horse" style="width:100%">
-            </a>
-            <p>{{i.product}}</p>
+                <!--<a href="/product/{{i._id}}">-->
+                    <!--<img src="/img/horse524.jpg" alt="A horse" style="width:100%">-->
+                <!--</a>-->
+                <!--<p>{{i.name}} : {{i._id}}</p>-->
+            <!--</form>-->
         </div>
 
     </div>

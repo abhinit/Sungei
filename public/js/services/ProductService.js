@@ -22,13 +22,23 @@ angular.module('ProductService', []).factory('Products', ['$http',
                 }).error(function() {
                     alert("error");
                 });
-            }
+            },
            /*,create: function(productData) {
                 return $http.post('/api/products', productData);
             },
             delete: function(id) {
                 return $http.delete('/api/products/' + id);
             }*/
+           getTags: function(id, callback) {
+               $http({
+                   method: 'get',
+                   url: '/api/products/tags/' +id
+               }).success(function(data) {
+                   callback(data);
+               }).error(function() {
+                   alert('error')
+               })
+           }
         };
     }
 ]);

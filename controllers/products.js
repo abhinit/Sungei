@@ -155,7 +155,7 @@ exports.list = function(req, res) {
             console.log(err);
         }else {
             return res.json({product: products});
-        };
+        }
     });
 };
 
@@ -172,3 +172,26 @@ exports.view = function(req, res) {
         }
     });
 };
+
+exports.getTagInfo = function(req, res){
+    Product.findOne({_id: req.params.id}, function(err,data){
+        if(err){
+            console.log(err);
+            return res.json({
+                "Error" : err
+            })
+        } else {
+            Tag.find({_id:{$in : data.tags}}, function(err, tags) {
+                if (err) {
+                    console.log(err);
+                    return res.json({
+                        "Error": err
+                    });
+                } else {
+                    console.log(tags);
+                    return res.json({tags : tags})
+                }
+            })
+        }
+    })
+}

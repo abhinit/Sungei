@@ -60,3 +60,65 @@
     margin-left: -1px;
     vertical-align: middle;
 }
+
+/* custom css */
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background: #333;
+    font-size: 12px;
+}
+
+a.navbar-brand {
+    color: #FFF;
+    font-size: 16px;
+}
+
+a.navbar-brand:hover {
+    color: #FFF;
+}
+
+.item {
+    border: 7px solid #EEE;
+    padding: 15px;
+    margin: 20px;
+    transition-duration: 0.3s;
+    border-radius: 0px
+}
+
+.item:hover {
+    box-shadow: 0px 5px 15px 1px #BBB;
+    cursor: pointer;
+}
+
+.item img {
+    margin-bottom: 10px;
+}
+
+h2#product_name {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.rating-box {
+    display: inline-flex;
+}
+
+h2{
+    border-bottom: solid #BBB;
+}
+
+.tags {
+    position: absolute;
+    right: 0;
+    padding-right:10px;
+}
+
+.tags a {
+    margin: 5px;
+}
+
+.below-title-bar {
+    display: inline-flex;
+    margin: 2px 0px 10px 0px;
+}

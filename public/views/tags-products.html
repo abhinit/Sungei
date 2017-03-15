@@ -1,7 +1,11 @@
-<h2>tag: {{tag.name}}</h2>
-<div class="col-sm-3" data-ng-repeat="i in products">
-    <a href="/product/{{i._id}}">
+<h1>tag: {{tag.name}}</h1>
+<a href="/product/{{i._id}}" data-ng-repeat="i in products">
+    <div class="item col-sm-3 thumbnail">
         <img src="{{i.images[0].url}}" alt="i.title" style="width:100%">
-    </a>
-    <p>{{i.title}} : {{i._id}}</p>
-</div>
+        <div class="rating-box">
+            <div style="width:{{i.rating}}%" class="rating", title="rating: {{i.rating}}%">
+            </div>
+        </div>
+        <p>{{i.title}} : ${{i.price}}</p>
+    </div>
+</a>

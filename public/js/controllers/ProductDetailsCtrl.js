@@ -17,18 +17,10 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
     };
 
     Products.getTags(id, function(data){
-            if (err) {
-                alert (err);
-                return;
-            }
             $scope.tags = data.tags
     });
 
     Products.getRecommendations(id, function(data){
-        if (err) {
-            alert (err);
-            return;
-        }
-        $scope.recommendations = data
+        $scope.recommendations = data.recommendations
     })
 });

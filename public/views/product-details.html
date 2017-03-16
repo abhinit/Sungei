@@ -19,19 +19,15 @@
                     </a>
                 </div>
             </div>
-            <br>
-          <!-- how do I make a space without using br? -->
             <p id="product_description">
                 {{product.description}}
             </p>
-            <div class = "row">
-                <div class="col-md-4">
+            <div class = "row" style="display: inline-flex">
+                <div >
                     <h1> ${{product.price}}</h1>
                     <div> discount: {{product.discount}} %</div>
                 </div>
-                <div class="col-md-6">
-                    <br>
-                    <br>
+                <div class="add-to-basket">
                     <select ng-model="qty">
                         <option value="">Qty</option>
                         <option data-ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>

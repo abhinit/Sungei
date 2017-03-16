@@ -89,3 +89,9 @@ h2{
     display: inline-flex;
     margin: 2px 0px 10px 0px;
 }
+
+.add-to-basket{
+    align-self: center;
+    margin-left: 50px;
+}
+

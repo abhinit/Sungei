@@ -226,3 +226,20 @@ exports.getRecommendations = function(req, res){
         }
     });
 };
+
+exports.getSearch = function(req, res){
+    var searchItems = req.params.search.split(" ");
+    Product.find({$or: [
+        {title: {$in: searchItems}},
+        {description: {$in: searchItems}}
+    ]}, function(err, data) {
+        if (err) {
+            console.log(err);
+            return res.json({
+                "Error": err
+            });
+        } else {
+            return res.json({products : data})
+        }
+    });
+};

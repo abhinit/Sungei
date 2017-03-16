@@ -23,6 +23,7 @@
     <script src="/js/controllers/BasketCtrl.js"></script>
     <script src="/js/controllers/TagsCtrl.js"></script>
     <script src="/js/controllers/TagsListCtrl.js"></script>
+    <script src="/js/controllers/SearchCtrl.js"></script>
     <script src="/js/services/ProductService.js"></script>
     <script src="/js/services/BasketItemService.js"></script>
     <script src="/js/services/TagsService.js"></script>
@@ -51,12 +52,18 @@
                         </a>
                     </li>
                 </ul>
+                <div ng-controller="SearchController">
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="search">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <a href="/search/{{search}}">
+                        <button type="submit" class="btn btn-default" >Submit</button>
+                    </a>
+
+                    <!--href="/product/{{i._id}}"-->
                 </form>
+                </div>
             </div>
             <!--/.nav-collapse -->
         </div>

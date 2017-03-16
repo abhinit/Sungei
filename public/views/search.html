@@ -1,0 +1,11 @@
+<h2>search: {{search}}</h2>
+<a href="../product/{{i._id}}" data-ng-repeat="i in products">
+    <div class="item col-sm-3 thumbnail">
+        <img src="{{i.images[0].url}}" alt="i.title" style="width:100%">
+        <div class="rating-box">
+            <div style="width:{{i.rating}}%" class="rating", title="rating: {{i.rating}}%">
+            </div>
+        </div>
+        <p>{{i.title}} : ${{i.price}}</p>
+    </div>
+</a>

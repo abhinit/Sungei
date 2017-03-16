@@ -21,6 +21,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider',
             .when('/tags/:id', {
                 templateUrl: '/views/tags-products.html',
                 controller: 'TagsController'
+            })
+            .when('/search/:search', {
+                templateUrl: '/views/search.html',
+                controller: 'SearchController'
             });
 
         $locationProvider.html5Mode(true);

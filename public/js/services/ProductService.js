@@ -48,6 +48,16 @@ angular.module('ProductService', []).factory('Products', ['$http',
                }).error(function() {
                    alert('error')
                })
+           },
+           getSearch: function(search, callback) {
+               $http({
+                   method: 'get',
+                   url: '/api/products/search/' + search
+               }).success(function(data) {
+                   callback(data);
+               }).error(function() {
+                   alert('error')
+               })
            }
         };
     }

@@ -1,13 +1,14 @@
 <div class="page-header">
     <h1>{{tag.name}}</h1>
 </div>
-<a href="/product/{{i._id}}" data-ng-repeat="i in products">
-    <div class="item col-sm-3 thumbnail">
+<a href="/product/{{i._id}}" data-ng-repeat="i in products" title="{{i.title}}">
+    <div class="item col-sm-2 thumbnail">
         <img src="{{i.images[0].url}}" alt="i.title" style="width:100%">
         <div class="rating-box">
             <div style="width:{{i.rating}}%" class="rating", title="rating: {{i.rating}}%">
             </div>
         </div>
-        <p>{{i.title}} : ${{i.price}}</p>
+        <h4 class="product-title">{{i.title}}</h4>
+        <h4 class="product-price">${{i.price}}</h4>
     </div>
 </a>

@@ -352,6 +352,7 @@ exports.getSearch = function(req, res){
                 {description: {$in: searchItems}},
                 {tags: {$in: tag_id}}
             ]}, function(err, data) {
+
                 if (err) {
                     console.log(err);
                     return res.json({

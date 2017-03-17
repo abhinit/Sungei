@@ -42,6 +42,16 @@
                 </button>
                 <a class="navbar-brand" href="#">MLDShop</a>
             </div>
+            <div ng-controller="SearchController">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                    </div>
+                    <a href="/search/{{search}}">
+                        <button type="submit" class="btn btn-default" >Submit</button>
+                    </a>
+                </form>
+            </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="inactive"><a href = '#tags'><i class="fa fa-tags"></i> Tags</a></li>
@@ -52,18 +62,6 @@
                         </a>
                     </li>
                 </ul>
-                <div ng-controller="SearchController">
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" ng-model="search">
-                    </div>
-                    <a href="/search/{{search}}">
-                        <button type="submit" class="btn btn-default" >Submit</button>
-                    </a>
-
-                    <!--href="/product/{{i._id}}"-->
-                </form>
-                </div>
             </div>
             <!--/.nav-collapse -->
         </div>
@@ -75,8 +73,9 @@
             </div>
         </div>
     </div><!-- /.container -->
+    <br>
     <footer class="container" style='text-align:right;'>
-        <!--<a href='https://www.iss.nus.edu.sg/centres-of-excellence/startup-sme'>Stackup Studios</a>-->
+        <a href='https://www.stackup.sg'>Stackup Studios</a>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

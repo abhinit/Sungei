@@ -98,3 +98,16 @@ h2{
 a.view-all-link{
     font-size:15px;
 }
+
+.product-title{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.full-search-bar{
+    display: inline-flex;
+    width: 100%;
+}

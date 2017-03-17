@@ -1,27 +1,28 @@
 <div class="jumbotron">
     <h1>MLDShop</h1>
     <div ng-controller="SearchController">
-        <form role="search">
-            <div class="form-group">
+        <form role="search" class="full-search-bar">
+            <div class="form-group search" style="width: 90%; margin-right: 5px;">
                 <input type="text" class="form-control" placeholder="Search" ng-model="search">
             </div>
             <a href="/search/{{search}}">
-                <button type="submit" class="btn btn-default" >Submit</button>
+                <button type="submit" class="btn btn-default" >Search</button>
             </a>
         </form>
     </div>
 </div>
 <div class="row">
     <h2>Products</h2>
-    <div data-ng-repeat="i in products">
+    <div data-ng-repeat="i in products" title="{{i.title}}">
         <a href="/product/{{i._id}}">
-            <div class="item col-sm-3 thumbnail">
+            <div class="item col-sm-2 thumbnail">
                 <img src="{{i.images[0].url}}" alt="i.title" style="width:100%">
                 <div class="rating-box">
                     <div style="width:{{i.rating}}%" class="rating", title="rating: {{i.rating}}%">
                     </div>
                 </div>
-                <p>{{i.title}} : ${{i.price}}</p>
+                <h4 class="product-title">{{i.title}}</h4>
+                <h4 class="product-price">${{i.price}}</h4>
             </div>
         </a>
     </div>

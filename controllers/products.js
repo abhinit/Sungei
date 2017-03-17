@@ -229,17 +229,32 @@ exports.getRecommendations = function(req, res){
 
 exports.getSearch = function(req, res){
     var searchItems = req.params.search.split(" ");
-    Product.find({$or: [
-        {title: {$in: searchItems}},
-        {description: {$in: searchItems}}
-    ]}, function(err, data) {
+    Tag.find({name: {$in: searchItems}}, function(err, tags){
         if (err) {
             console.log(err);
             return res.json({
                 "Error": err
             });
         } else {
-            return res.json({products : data})
+            var tag_id = [];
+            for (var i=0; i<tags.length; i++){
+                tag_id[i] = tags[i]._id;
+            }
+            Product.find({$or: [
+                {title: {$in: searchItems}},
+                {description: {$in: searchItems}},
+                {tags: {$in: tag_id}}
+            ]}, function(err, data) {
+                if (err) {
+                    console.log(err);
+                    return res.json({
+                        "Error": err
+                    });
+                } else {
+                    return res.json({products : data})
+                }
+            });
         }
     });
+
 };

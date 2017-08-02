@@ -19,17 +19,11 @@ var Catalogs = new Schema({
 });
 
 var Comment = new Schema({
-    title: {
+    comment: {
         type: String,
-        default: "comment title"
-    },
-    description: {
-        type: String,
-        default: "comment description"
-    },
-    rating: {
-        type: Number,
-        default: 0
+        default: ''
+        // user: Schema.ObjectId,
+        // date: { type: Date, default: Date.now }
     }
 });
 

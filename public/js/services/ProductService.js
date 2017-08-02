@@ -58,6 +58,18 @@ angular.module('ProductService', []).factory('Products', ['$http',
                }).error(function() {
                    alert('error')
                })
+           },
+           updateProductDetails_PostComment: function(id, Product, callback) {
+            callback(Product);
+               $http({
+                   method: 'put',
+                   url: '/api/products/'+ id,
+                   data: Product
+               }).success(function(data) {
+                   callback(data);
+               }).error(function() {
+                   alert('error')
+               })
            }
         };
     }

@@ -24,13 +24,17 @@
     <script src="/js/controllers/TagsCtrl.js"></script>
     <script src="/js/controllers/TagsListCtrl.js"></script>
     <script src="/js/controllers/SearchCtrl.js"></script>
+    <script src="/js/controllers/UserCtrl.js"></script>
+    <script src="/js/controllers/MainCtrl.js"></script>
     <script src="/js/services/ProductService.js"></script>
     <script src="/js/services/BasketItemService.js"></script>
     <script src="/js/services/TagsService.js"></script>
+    <script src="/js/services/UserService.js"></script>
+    <script src="/js/services/AuthService.js"></script>
     <script src="/js/appRoutes.js"></script>
     <script src="/js/app.js"></script>
 </head>
-<body ng-app="frontendApp">
+<body ng-app="frontendApp" ng-controller="MainCtrl as main" ng-show="main.loadme" ng-cloak>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -40,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">MLDShop</a>
+                <a class="navbar-brand" href="/">MLDShop</a>
             </div>
             <div ng-controller="SearchController">
                 <form class="navbar-form navbar-right" role="search">
@@ -48,17 +52,37 @@
                         <input type="text" class="form-control" placeholder="Search" ng-model="search">
                     </div>
                     <a href="/search/{{search}}">
-                        <button type="submit" class="btn btn-default" >Search</button>
+                        <button type="submit" class="btn btn-default">Search</button>
                     </a>
                 </form>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="inactive"><a href = '#tags'><i class="fa fa-tags"></i> Tags</a></li>
                     <li class="inactive">
-                        <a href="#basket">
+                        <a href = '/tags'>
+                            <i class="fa fa-tags"></i> Tags</a></li>
+                    <li class="inactive">
+                        <a a ng-show="main.isLoggedIn" href="/basket">
                             <i class="fa fa-shopping-cart"></i> Basket
                             <span ng-controller="BasketController">({{basketItemCount}})</span>
+                        </a>
+                    </li>
+                    <li class="inactive">
+                        <a ng-show="!main.isLoggedIn" href="/login">
+                            <i class="fa fa-sign-in"></i> Login                            
+                        </a>
+                    </li>
+                    <li class="inactive">
+                        <a ng-show="!main.isLoggedIn" href="/register">
+                            <i class="fa fa-user"></i> Register                            
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <a ng-show="main.isLoggedIn" href="/profile"> {{ main.username }}'s profile</a></li>
+                    <li class="inactive">
+                        <a ng-show="main.isLoggedIn" href="/logout" ng-click="main.logout();">
+                            <i class="fa fa-sign-out"></i> Logout                           
                         </a>
                     </li>
                 </ul>

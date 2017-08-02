@@ -17,9 +17,11 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
             }).success(function(data) {
                 console.log("in service")
                 console.log(data)
-                caller.itemCount = data.products.length;
-                caller.broadcastItemCount();
-                callback(data);
+                if(data.products) {
+                    caller.itemCount = data.products.length;
+                    caller.broadcastItemCount();
+                    callback(data);
+                }
             }).error(function() {
                 alert("error");
             });
@@ -46,7 +48,6 @@ angular.module('BasketItemService', []).factory('BasketItems', ['$http', '$rootS
                 callback(err);
             });
         };
-
         return basketService;
     }
 ]);

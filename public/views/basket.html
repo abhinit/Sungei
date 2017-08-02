@@ -4,6 +4,7 @@
             <th>Product</th>
             <th>Qty</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -13,6 +14,15 @@
             </td>
             <td>{{i.qty}}</td>
             <td>${{i.price}}</td>
+            <td>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">Modify</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Reduce by 1</a></li>
+                        <li><a href="#">Remove all</a></li>
+                    </ul>
+                </div>
+            </td>
         </tr>
         <tr>
             <td colspan="2" align="right">Total</td>
@@ -20,3 +30,9 @@
         </tr>
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-sm-6 col-md-6 col-md-offset-6 col-sm-offset-6" align="right">        
+        <a href="/checkout" type="button" class="btn btn-success">Checkout</a>        
+    </div>
+</div>

@@ -1,5 +1,7 @@
 <div class="jumbotron">
     <h1>MLDShop</h1>
+    <h3 ng-show="!main.isLoggedIn"><strong>Please login to use our service.</strong></h3>
+    <h3 ng-show="main.isLoggedIn"><strong>Welcome {{ main.username }}, so glad you're here.</strong></h3>
     <div ng-controller="SearchController">
         <form role="search" class="full-search-bar">
             <div class="form-group search" style="width: 90%; margin-right: 5px;">

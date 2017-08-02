@@ -30,7 +30,7 @@
                 <div class="add-to-basket">
                     <select ng-model="qty">
                         <option value="">Qty</option>
-                        <option data-ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]">{{i}}</option>
+                        <option data-ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]" ng-selected="$first">{{i}}</option>
                     </select>
                     <input type="submit" value="Add to basket" ng-click="addToBasket(product)" />
                 </div>
@@ -52,17 +52,24 @@
         </a>
 
     </div>
+    <div class = "row">
+        <div class="form-group">
+            <h2> Comments </h2>
 
-    <div class="row">
-        <h2> Comments </h2>
-        <div data-ng-repeat="i in product.comments" class="comment">
-            <h3> {{i.title}}
-                <div class="rating-box">
-                    <div style="width:{{i.rating}}%" class="rating", title="rating: {{i.rating}}%"></div>
-                </div>
-            </h3>
-            <p> {{i.description}}</p>
+            <!-- Post comments -->
+            <textarea name="comment" class="form-control" cols="30" rows="3" placeholder="Write your comment here" ng-model="comment"> 
+            </textarea>
+            <br>
+            <button type="submit" name="button" class="btn btn-smbtn-info" ng-click="submit()">Post Comment</button>
+            <br>
+
+            <!-- View previous comments -->
+            <h2>Previous Comments</h2>
+            <div data-ng-repeat="i in product.comments">
+                <p class="fa fa-comment"> {{i.comment}}</p>
+            </div>
         </div>
     </div>
 </form>
+
 

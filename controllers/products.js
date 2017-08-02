@@ -334,6 +334,50 @@ exports.getRecommendations = function(req, res){
     });
 };
 
+exports.updateProdutDetails = function(req, res){
+    console.log("UPDATE PRODUCT DETAILS BACKEND")
+    console.log(req.params.id)
+    console.log(req.body.comments)
+    Product.findOneAndUpdate(
+        {_id: req.params.id},
+        { $set: { "comments" : req.body.comments} },
+         function(err, data){
+         if(err){
+            console.log(err);
+            return res.json({
+                "Error" : err
+            })
+        } else {
+            console.log("COMMENTS UPDATED IN DB")
+            return res.json({"updated":  "Ok"})
+        }
+    })
+    
+    // Product.findOne({_id: req.params.id}, function(err,data){
+    //     if(err){
+    //         console.log(err);
+    //         return res.json({
+    //             "Error" : err
+    //         })
+    //     } else {
+    //         var recList = [];
+    //         for (var i=0; i<data.recommendations.length; i++){
+    //             recList[i] = data.recommendations[i].product;
+    //         }
+    //         Product.find({_id:{$in : recList}}, function(err, recommendations) {
+    //             if (err) {
+    //                 console.log(err);
+    //                 return res.json({
+    //                     "Error": err
+    //                 });
+    //             } else {
+    //                 return res.json({recommendations : recommendations})
+    //             }
+    //         })
+    //     }
+    // });
+};
+
 exports.getSearch = function(req, res){
     var searchItems = req.params.search.split(" ");
     Tag.find({name: {$in: searchItems}}, function(err, tags){

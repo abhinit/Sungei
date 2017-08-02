@@ -8,5 +8,5 @@ router.get('/:id', controller.view);
 router.get('/tags/:id', controller.getTagInfo);
 router.get('/recommendations/:id', controller.getRecommendations);
 router.get('/search/:search', controller.getSearch);
-
+router.put('/:id', controller.updateProdutDetails);
 module.exports = router;

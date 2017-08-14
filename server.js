@@ -48,7 +48,7 @@ server.use('/api/tags', require('./routes/tags.js'));
 server.use('/api/users', require('./routes/users.js'));
 server.use('/api/authenticate', require('./routes/authenticate.js'));    
 server.use('/api/currentuser', require('./routes/currentUser.js')); 
-//server.use('/api/order', require('./routes/order.js')); 
+server.use('/api/orders', require('./routes/order.js')); 
 
 function listen(){
 	var port = Number(process.env.PORT || 5000);

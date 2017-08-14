@@ -2,8 +2,7 @@ angular.module('AuthService', [])
 
 .factory('Auth', function($http, AuthToken) {
 	var authFactory = {};
-
-	authFactory.login = function(loginData) {
+	authFactory.login = function(loginData) {			
 		return $http.post('/api/authenticate', loginData).then(function(data) {
 		 	AuthToken.setToken(data.data.token);
 			return data;

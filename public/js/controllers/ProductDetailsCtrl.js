@@ -20,9 +20,8 @@ angular.module('ProductDetailsCtrl', []).controller('ProductDetailsController', 
             console.log(data)
             });          
         }
-        // Clear comment box
+        // Clear comment box after posting
         $scope.comment = ""
-        // Update in DB
     };
 
     $scope.addToBasket = function(product) {

@@ -211,23 +211,7 @@ var saveToDb = function(rows, index, tags, done) {
             discount: row[4],
             rating: row[7],
             seller: row[2],
-            comments: [
-                // {
-                //  title: "first review",
-                //  rating: 20,
-                //  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."
-                // },
-                // {
-                //  title: "second review",
-                //  rating: 50,
-                //  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."
-                // },
-                // {
-                //  title: "third review",
-                //  rating: 90,
-                //  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam."
-                // }
-            ],
+            comments: [],
             recommendations: [],
             images : [{
                 url: row[6]
@@ -335,7 +319,7 @@ exports.getRecommendations = function(req, res){
 };
 
 exports.updateProdutDetails = function(req, res){
-    console.log("UPDATE PRODUCT DETAILS BACKEND")
+    console.log("----------- UPDATE PRODUCT DETAILS BACKEND --------------")
     console.log(req.params.id)
     console.log(req.body.comments)
     Product.findOneAndUpdate(
@@ -348,34 +332,10 @@ exports.updateProdutDetails = function(req, res){
                 "Error" : err
             })
         } else {
-            console.log("COMMENTS UPDATED IN DB")
-            return res.json({"updated":  "Ok"})
+            console.log("Comments are updated in database")
+            return res.json({"Updated": "Success"})
         }
     })
-    
-    // Product.findOne({_id: req.params.id}, function(err,data){
-    //     if(err){
-    //         console.log(err);
-    //         return res.json({
-    //             "Error" : err
-    //         })
-    //     } else {
-    //         var recList = [];
-    //         for (var i=0; i<data.recommendations.length; i++){
-    //             recList[i] = data.recommendations[i].product;
-    //         }
-    //         Product.find({_id:{$in : recList}}, function(err, recommendations) {
-    //             if (err) {
-    //                 console.log(err);
-    //                 return res.json({
-    //                     "Error": err
-    //                 });
-    //             } else {
-    //                 return res.json({recommendations : recommendations})
-    //             }
-    //         })
-    //     }
-    // });
 };
 
 exports.getSearch = function(req, res){

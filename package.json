@@ -26,6 +26,7 @@
     "mongodb": "*",
     "mongoose": "^4.11.3",
     "morgan": "^1.8.1",
+    "node-uuid": "^1.4.8",
     "nodemon": "^1.11.0",
     "passport": "*",
     "passport-http": "*",
